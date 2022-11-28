@@ -47,7 +47,7 @@ function DraggableCard({
           <span>🔥 </span>
           {toDoText}
           <Pencil
-            src="/assets/pencil.png"
+            src={`${import.meta.env.BASE_URL}assets/pencil.png`}
             onClick={() => {
               overlay(true);
               setTaskId(toDoId);

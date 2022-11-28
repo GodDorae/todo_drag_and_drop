@@ -125,9 +125,9 @@ function Board({ toDos, boardId, index }: IBoardProps) {
         {(magic) => (
           <Wrapper ref={magic.innerRef} {...magic.draggableProps}>
             <Title {...magic.dragHandleProps}>{boardId}</Title>
-            <Delete src="/assets/bin.png" onClick={deleteBoard} />
+            <Delete src={`${import.meta.env.BASE_URL}assets/bin.png`} onClick={deleteBoard} />
             <Pencil
-              src="/assets/pencil.png"
+              src={`${import.meta.env.BASE_URL}assets/pencil.png`}
               onClick={() => {
                 setShowTitleOverlay(true);
               }}
