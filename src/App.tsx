@@ -160,7 +160,7 @@ function App() {
                     {...magic.droppableProps}
                     ref={magic.innerRef}
                   >
-                    <TrashBin src="/assets/bin.png" />
+                    <TrashBin src={`${import.meta.env.BASE_URL}assets/bin.png`} />
                   </TrashArea>
                 )}
               </Droppable>
