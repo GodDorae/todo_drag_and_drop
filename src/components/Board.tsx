@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import DraggableCard from "./DraggableCard";
 import { useForm } from "react-hook-form";
-import { IToDo, toDoState } from "../atom";
+import { columnOrder, IToDo, toDoState } from "../atom";
 import { useSetRecoilState } from "recoil";
 import { useState } from "react";
 import ModalForBoardNameChange from "./ModalForBoardNameChange";
@@ -87,6 +87,7 @@ interface IForm {
 
 function Board({ toDos, boardId, index }: IBoardProps) {
   const setToDos = useSetRecoilState(toDoState);
+  const setColumns = useSetRecoilState(columnOrder);
   const { register, setValue, handleSubmit } = useForm<IForm>();
   const [showTitleOverlay, setShowTitleOverlay] = useState(false);
   const [showTaskOverlay, setShowTaskOverlay] = useState(false);
@@ -110,6 +111,11 @@ function Board({ toDos, boardId, index }: IBoardProps) {
       const copy = { ...allBoards };
       delete copy[boardId];
       return copy;
+    });
+    setColumns((allColumns) => {
+      const columnsCopy = [...allColumns];
+      const newColumns = columnsCopy.filter((column) => column !== boardId);
+      return newColumns;
     });
   };
 
@@ -158,8 +164,21 @@ function Board({ toDos, boardId, index }: IBoardProps) {
           </Wrapper>
         )}
       </Draggable>
-      {showTitleOverlay && <ModalForBoardNameChange show={showTitleOverlay} controlShow={setShowTitleOverlay} boardId={boardId}/>}
-      {showTaskOverlay && <ModalForTodoChange show={showTaskOverlay} controlShow={setShowTaskOverlay} boardId={boardId} toDoId={taskId} />}
+      {showTitleOverlay && (
+        <ModalForBoardNameChange
+          show={showTitleOverlay}
+          controlShow={setShowTitleOverlay}
+          boardId={boardId}
+        />
+      )}
+      {showTaskOverlay && (
+        <ModalForTodoChange
+          show={showTaskOverlay}
+          controlShow={setShowTaskOverlay}
+          boardId={boardId}
+          toDoId={taskId}
+        />
+      )}
     </>
   );
 }
