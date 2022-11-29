@@ -325,17 +325,16 @@ Error generating stack: `+i.message+`
   align-items: center;
   gap: 50px;
 `,cM=Ee.div`
-  width: 150px;
-  height: 150px;
+  width: 60px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 50px;
-  right: 50px;
+  top: 20px;
+  right: 20px;
   border-radius: 50%;
   text-align: center;
-  font-size: 200%;
   font-weight: bold;
   background-color: aquamarine;
   color: white;
